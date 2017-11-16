@@ -1,0 +1,288 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>爱宠</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Free HTML5 Website Template by freehtml5.co" />
+	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
+	
+
+	
+
+  	<!-- Facebook and Twitter integration -->
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:400,600,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Sacramento" rel="stylesheet">
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="css/icomoon.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="css/magnific-popup.css">
+
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="css/flexslider.css">
+
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="css/style.css">
+
+	<!-- Modernizr JS -->
+	<script src="js/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
+	<!--css类引用-->
+<link rel="stylesheet" href="js/layui/css/layui.css" />
+<link rel="stylesheet" href="js/eleme-ui/index.css" />
+<link rel="stylesheet" href="css/ShoppingCart.css" />
+
+</head>
+<body>
+	
+	<div class="fh5co-loader"></div>
+	
+	<div id="page">
+	<nav class="fh5co-nav" role="navigation">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="top-menu">
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-7 text-left menu-1">
+								<ul>
+									<li class="active"><a href="index.html">首页</a></li>
+									<li><a href="sh.html">宠物生活</a></li>
+									<li><a href="zx.html">宠物资讯</a></li>
+									<li class="has-dropdown">
+										<a href="#">宠物商城</a>
+										<ul class="dropdown">
+											<li><a href="sc.html">狗狗</a></li>
+											<li><a href="#">猫咪</a></li>
+											<li><a href="#">水族</a></li>
+											<li><a href="#">爬虫</a></li>
+										</ul>
+									</li>
+									<li><a href="jk.html">宠物健康</a></li>
+									<li><a href="dl.html">登录</a></li>
+								</ul>
+							</div>
+							<div class="col-sm-5">
+								<ul class="fh5co-social-icons">
+									<li><a href="images/IMG_3676.PNG"><i class="icon-twitter-with-circle"></i></a></li>
+									<li><a href="images/IMG_3678.PNG"><i class="icon-facebook-with-circle"></i></a></li>
+									<li><a href="images/IMG_3679.PNG"><i class="icon-linkedin-with-circle"></i></a></li>
+									<li><a href="https://mail.qq.com/cgi-bin/frame_html?sid=vqxdDZZxgbW_MBJI&r=3c8953b69b998a27a58db1fdaacbac30"><i class="icon-dribbble-with-circle"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 text-center menu-2">
+					<div id="fh5co-logo">
+						<h1>
+							<a href="index.html">
+							爱宠
+							<small>生活 主题</small>
+							</a>
+						</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+<!--主要内容-->
+<div class="row " id="myVue" v-cloak>
+	<div class="col-lg-10 col-lg-offset-1" >
+		<div class="layui-form">
+			<table class="ShopCartTable layui-table">
+				<thead>
+					<tr>
+						<th class="selectLeft">
+							<template>
+								<el-checkbox  @change="checkedAllBtn(checkedAll)" v-model="checkedAll">全选</el-checkbox>
+							</template>
+							<span class="selectLeftGoods">商品或服务名称</span>
+						</th>
+						<th>单价</th>
+						<th>数量</th>
+						<th>小计</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(tabledatas,index) in shopTableDatas">
+						<td  class="selectLeft">
+							<template>
+								<el-checkbox @change="checkedRadioBtn(tabledatas)" v-model="tabledatas.checked"></el-checkbox>
+							</template>
+							<span class="goodName">
+								<img class="goodImg" :src="tabledatas.src" />
+							</span>
+							<span class="goodName goodsName">
+								<h2 class="goodname" v-text="tabledatas.name"></h2>
+								<p class="goodGary">
+									<span>供应商：</span>
+									<span v-text="tabledatas.supplier"></span>
+								</p>
+								<p class="goodGary">
+									<span>发货地：</span>
+									<span v-text="tabledatas.ConPlace"></span>
+								</p>
+							</span>
+						</td>
+						<td class="danPrice">{{tabledatas.price | moneyFiler}}</td>
+						<td>
+							<i @click="goodNum(tabledatas,-1)" class="fa  deleteBtn" aria-hidden="true">-</i>
+							<input v-model="tabledatas.num" type="text" class="form-control numInput" aria-label="...">
+							<i @click="goodNum(tabledatas,1)" class="fa  addBtn" aria-hidden="true">+</i>
+						</td>
+						<td>
+							<p class="totalPrice">{{tabledatas.price*tabledatas.num | moneyFiler}}</p>
+						</td>
+						<td class="gongneng">
+							<p class="deletegoods" @click="alertRadio(index)">删除</p>
+							<p @click="alertmovesSavegoods(index)">移到我的收藏</p>
+							<template v-if="tabledatas.saveandremove">
+								<p @click="tabledatas.saveandremove = false">加入收藏</p>
+							</template>
+							<template v-else>
+								<p :class="{'saveCheck':!tabledatas.saveandremove}" @click="tabledatas.saveandremove = true">取消收藏</p>
+							</template>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="row tablefooter">
+				<template>
+					<el-checkbox style="padding-left:16px" @change="checkedAllBtn(checkedAll)" v-model="checkedAll">全选</el-checkbox>
+				</template>
+				<span class="removeMuch" @click="alertMuch">删除选中的商品或服务</span>
+				<span class="removeSaves" @click="alertMuchgoods">移到我的收藏</span>
+				<span class="servicenum">已选择<span class="goodsNum">{{goodsNum}}</span>件商品<span class="goodsNum">{{serviceNum}}</span>项服务</span>
+				<span class="totalclassPoin">总价：<span class="totalMoneyClass">{{totalMoney | moneyFiler}}</span></span>
+				<span @click="saveData" class="SettlementBtn">去结算</span>
+			</div>
+		</div>
+	</div>
+</div>
+<!--js类引用-->
+<script type="text/javascript" src="js/vue/vue.min.js" ></script>
+<script type="text/javascript" src="js/eleme-ui/index.js" ></script>
+<script type="text/javascript" src="js/ShoppingCart.js" ></script>
+
+
+	<div id="fh5co-instagram">
+		<div class="container">
+			<div class="row animate-box">
+				<div class="col-md-12 col-md-offset-0 text-center fh5co-heading">
+					<h2><span>萌宠热门</span></h2>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3 nopadding animate-box">
+				<div class="insta" style="background-image: url(images/insta-1.jpg);"></div>
+			</div>
+			<div class="col-md-3 nopadding animate-box">
+				<div class="insta" style="background-image: url(images/insta-2.jpg);"></div>
+			</div>
+			<div class="col-md-3 nopadding animate-box">
+				<div class="insta" style="background-image: url(images/insta-3.jpg);"></div>
+			</div>
+			<div class="col-md-3 nopadding animate-box">
+				<div class="insta" style="background-image: url(images/insta-4.jpg);"></div>
+			</div>
+		</div>
+	</div>
+
+	<footer id="fh5co-footer" role="contentinfo">
+		<div class="container">
+			<div class="row row-pb-md">
+				<div class="col-md-4 fh5co-widget">
+					<h4>爱宠</h4>
+					<p>每一个宠物都是小天使</br>我们都应该爱护它</p>
+				</div>
+				<div class="col-md-4 col-md-push-1">
+					<h4>链接</h4>
+					<ul class="fh5co-footer-links">
+						<li><a href="#">宠物生活</a></li>
+						<li><a href="#">宠物资讯</a></li>
+						<li><a href="#">宠物健康</a></li>
+						<li><a href="#">宠物行为</a></li>
+					</ul>
+				</div>
+
+				<div class="col-md-4 col-md-push-1">
+					<h4>相关信息</h4>
+					<ul class="fh5co-footer-links">
+						<li>关于我们</li>
+						<li><a href="tel://1234567920">联系我们</a></li>
+						<li><a href="mailto:info@yoursite.com">商务合作</a></li>
+					</ul>
+				</div>
+
+			</div>
+
+			<div class="row copyright">
+				<div class="col-md-12 text-center">
+					<p>
+						<small class="block">&copy; 2017 Free HTML5. All Rights Reserved.More Templates 爱宠</small>
+					</p>
+					<p>
+						<ul class="fh5co-social-icons">
+							<li><a href="#"><i class="icon-twitter"></i></a></li>
+							<li><a href="#"><i class="icon-facebook"></i></a></li>
+							<li><a href="#"><i class="icon-linkedin"></i></a></li>
+							<li><a href="#"><i class="icon-dribbble"></i></a></li>
+						</ul>
+					</p>
+				</div>
+			</div>
+
+		</div>
+	</footer>
+	</div>
+
+	<div class="gototop js-top">
+		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+	</div>
+	
+	<!-- jQuery -->
+	<script src="js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="js/jquery.waypoints.min.js"></script>
+	<!-- Flexslider -->
+	<script src="js/jquery.flexslider-min.js"></script>
+	<!-- Magnific Popup -->
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/magnific-popup-options.js"></script>
+	<!-- Main -->
+	<script src="js/main.js"></script>
+
+	</body>
+</html>
+

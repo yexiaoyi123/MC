@@ -8,8 +8,65 @@
 	<meta name="description" content="Free HTML5 Website Template by freehtml5.co" />
 	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
 	
-
+<style type="text/css">
+html{overflow-y:scroll;vertical-align:baseline;}
+body{font-family:Microsoft YaHei,Segoe UI,Tahoma,Arial,Verdana,sans-serif;font-size:12px;color:#fff;height:100%;line-height:1;background:#999}
+*{margin:0;padding:0}
+ul,li{list-style:none}
+h1{font-size:30px;font-weight:700;text-shadow:0 1px 4px rgba(0,0,0,.2)}
+.login-box{width:410px;margin:120px auto 0 auto;text-align:center;padding:30px;background:url(images/mask.png);border-radius:10px;}
+.login-box .name,.login-box .password,.login-box .code,.login-box .remember{font-size:16px;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.login-box .remember input{box-shadow:none;width:15px;height:15px;margin-top:25px}
+.login-box .remember{padding-left:40px}
+.login-box .remember label{display:inline-block;height:42px;width:70px;line-height:34px;text-align:left}
+.login-box label{display:inline-block;width:100px;text-align:right;vertical-align:middle}
+.login-box #code{width:120px}
+.login-box .codeImg{float:right;margin-top:26px;}
+.login-box img{width:148px;height:42px;border:none}
+input[type=text],input[type=password]{width:270px;height:42px;margin-top:25px;padding:0px 15px;border:1px solid rgba(255,255,255,.15);border-radius:6px;color:#fff;letter-spacing:2px;font-size:16px;background:transparent;}
+button{cursor:pointer;width:100%;height:44px;padding:0;background:#ef4300;border:1px solid #ff730e;border-radius:6px;font-weight:700;color:#fff;font-size:24px;letter-spacing:15px;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+input:focus{outline:none;box-shadow:0 2px 3px 0 rgba(0,0,0,.1) inset,0 2px 7px 0 rgba(0,0,0,.2)}
+button:hover{box-shadow:0 15px 30px 0 rgba(255,255,255,.15) inset,0 2px 7px 0 rgba(0,0,0,.2)}
+.screenbg{position:fixed;bottom:0;left:0;z-index:-999;overflow:hidden;width:100%;height:100%;min-height:100%;}
+.screenbg ul li{display:block;list-style:none;position:fixed;overflow:hidden;top:0;left:0;width:100%;height:100%;z-index:-1000;float:right;}
+.screenbg ul a{left:0;top:0;width:100%;height:100%;display:inline-block;margin:0;padding:0;cursor:default;}
+.screenbg a img{vertical-align:middle;display:inline;border:none;display:block;list-style:none;position:fixed;overflow:hidden;top:0;left:0;width:100%;height:100%;z-index:-1000;float:right;}
+.bottom{margin:8px auto 0 auto;width:100%;position:fixed;text-align:center;bottom:0;left:0;overflow:hidden;padding-bottom:8px;color:#ccc;word-spacing:3px;zoom:1;}
+.bottom a{color:#FFF;text-decoration:none;}
+.bottom a:hover{text-decoration:underline;}
+</style>
 	
+      <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$(".screenbg ul li").each(function(){
+		$(this).css("opacity","0");
+	});
+	$(".screenbg ul li:first").css("opacity","1");
+	var index = 0;
+	var t;
+	var li = $(".screenbg ul li");	
+	var number = li.size();
+	function change(index){
+		li.css("visibility","visible");
+		li.eq(index).siblings().animate({opacity:0},3000);
+		li.eq(index).animate({opacity:1},3000);
+	}
+	function show(){
+		index = index + 1;
+		if(index<=number-1){
+			change(index);
+		}else{
+			index = 0;
+			change(index);
+		}
+	}
+	t = setInterval(show,8000);
+	//根据窗口宽度生成图片宽度
+	var width = $(window).width();
+	$(".screenbg ul img").css("width",width+"px");
+});
+</script>
 
   	<!-- Facebook and Twitter integration -->
 	<meta property="og:title" content=""/>
@@ -62,19 +119,20 @@
 						<div class="row">
 							<div class="col-sm-7 text-left menu-1">
 								<ul>
-									<li><a href="index.html">首页</a></li>
+									<li class="active"><a href="index.html">首页</a></li>
 									<li><a href="sh.html">宠物生活</a></li>
+									<li><a href="zx.html">宠物资讯</a></li>
 									<li class="has-dropdown">
-										<a href="blog.html">宠物资讯</a>
+										<a href="#">宠物商城</a>
 										<ul class="dropdown">
-											<li><a href="#">狗狗</a></li>
+											<li><a href="sc.html">狗狗</a></li>
 											<li><a href="#">猫咪</a></li>
 											<li><a href="#">水族</a></li>
 											<li><a href="#">爬虫</a></li>
 										</ul>
 									</li>
-									<li><a href="about.html">宠物健康</a></li>
-									<li class="active"><a href="contact.html">登录</a></li>
+									<li><a href="jk.html">宠物健康</a></li>
+									<li><a href="dl.html">登录</a></li>
 								</ul>
 							</div>
 							<div class="col-sm-5">
@@ -105,81 +163,54 @@
 	</nav>
 
 
-	<div id="fh5co-contact" class="fh5co-no-pd-top">
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-12 col-md-offset-0 text-center fh5co-heading">
-					<h2><span>登录</span></h2>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-9 col-padded-right">
-					<form action="#">
-						<div class="form-group row">
-							<div class="col-md-6 field">
-								<label for="firstname">登录名</label>
-								<input type="text" name="FName" id="firstname" class="form-control">
-							</div>
-							<div class="col-md-6 field">
-								<label for="lastname">密码</label>
-								<input type="text" name="FName" id="lastname" class="form-control">
-							</div>
-						</div>
-						<div class="form-group row">
-							<div class="col-md-6 field">
-								<label for="email">邮箱</label>
-								<input type="text" name="FName" id="email" class="form-control">
-							</div>
-							<div class="col-md-6 field">
-								<label for="phone">电话</label>
-								<input type="text" name="FName" id="phone" class="form-control">
-							</div>
-						</div>
-						<div class="form-group row">
-							<div class="col-md-12 field">
-								<label for="message">留言</label>
-								<textarea name="message" id="message" cols="30" rows="10" class="form-control"></textarea>
-							</div>
-						</div>
-						<div class="form-group row">
-							<div class="col-md-12 field">
-								<input type="submit" id="submit" class="btn btn-primary" value="登录">
-								<input type="submit" id="submit" class="btn btn-primary" value="注册">
-							</div>
-						</div>
-					</form>
-				</div>
-				
-				<aside id="sidebar">
-					<div class="col-md-3">
-						<div class="side animate-box">
-							<div class="col-md-12 col-md-offset-0 text-center fh5co-heading fh5co-heading-sidebar">
-								<h2><span>关于我们</span></h2>
-							</div>
-							<div class="fh5co-staff">
-								<img src="images/user-2.jpeg" alt="Free HTML5 Templates by FreeHTML5.co">
-								
-								<p>这是一个分享关于萌宠的网站，希望能给喜爱小动物的朋友们带来欢乐~</p>
-								<ul class="fh5co-social-icons">
-									<li><a href="#"><i class="icon-facebook"></i></a></li>
-									<li><a href="#"><i class="icon-twitter"></i></a></li>
-									<li><a href="#"><i class="icon-dribbble"></i></a></li>
-									<li><a href="#"><i class="icon-github"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</aside>
-
+	<div class="login-box">
+	<h1>登录</h1>
+	<form method="post" action="">
+		<div class="name">
+			<label>账号：</label>
+			<input type="text" name="" id="" tabindex="1" autocomplete="off" />
+		</div>
+		<div class="password">
+			<label>密  码：</label>
+			<input type="password" name="" maxlength="16" id="" tabindex="2"/>
+		</div>
+		<div class="code">
+			<label>验证码：</label>
+			<input type="text" name="" maxlength="4" id="code" tabindex="3"/>
+			<div class="codeImg">
+				<img src="images/captcha.jpeg.jpg" />
 			</div>
 		</div>
-	</div>
+		<div class="remember">
+			<input type="checkbox" id="remember" tabindex="4">
+			<label>记住密码</label>
+		</div>
+		<div class="login">
+			<button type="submit" tabindex="5">登录</button>
+		</div>
+	</form>
+</div>
 
+
+
+<div class="screenbg">
+	<ul>
+		<li><a href="javascript:;"><img src="images/0.jpg"></a></li>
+		
+	</ul>
+</div>
+</div>
+			
+		
+
+<div>
+    <p></br></br></br></br></br></p>
+</div>
 	<div id="fh5co-instagram">
 		<div class="container">
 			<div class="row animate-box">
 				<div class="col-md-12 col-md-offset-0 text-center fh5co-heading">
-					<h2><span>萌宠热门</span></h2>
+                    <h2><span>>萌宠热门</span></h2>
 				</div>
 			</div>
 		</div>
